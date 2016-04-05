@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Medx website</title>
+        <script src="js/jquery-2.2.1.min.js" type="text/javascript"> </script>
+        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js">  </script>
+        <script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script>
+        
+    </head>
+    <body>
+        <p> You have reached the Medx server frontend</p>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">#</span>
+            <input id="textInput" type="text" class="form-control" placeholder="Input something" aria-describedby="basic-addon1">
+            <span class="input-group-btn">
+                <button id="textInputSubmit" onclick="tryAPI()" class="btn btn-default" type="button">Fk <API></API>!</button>
+            </span>
+        </div>
+        <div id="returnData"></div>
+    </body>
+    
+    <script>
+        function tryAPI() {
+            var text = $("#textInput").val();
+            if (text && text != "") {
+                var syncData = {
+                    text : text
+                }
+                $("#textInput").prop('disabled', true);
+                $("#textInputSubmit").prop('disabled', true);
+                $.ajax({
+                    url: 'http://localhost:8080/api/parseText',
+                    type: 'post',
+                    data: {
+                        syncData
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(JSON.stringify(data));
+                        $("#returnData").html("What does the server said? " + data);
+                    },
+                    failure: function (err) {
+                        $("#urlInput").prop('disabled', false);
+                        $("#urlInputSubmit").prop('disabled', false);
+                        $("#returnData").html("Server is fked.");
+                    }
+                });
+            }
+        }
+        
+    </script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    
+    
+</html>

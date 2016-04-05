@@ -1,0 +1,15 @@
+{
+   "name" : "MedxServerBackend",
+   "version" : "0.1.0",
+   "main" : "server.js",
+   "dependencies": {
+      "express" : "*",
+      "body-parser" : "*",
+      "cookie-parser" : "*",
+      "bcrypt-nodejs" : "latest",
+      "mongoose" : "*",
+      "scraperjs" : "*",
+      "angular" : "~1.5.0",
+      "live-server" : "*"
+   }
+}
