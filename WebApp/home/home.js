@@ -71,17 +71,17 @@ app.controller("homeCtrl", ["$scope", "Auth",
 		var e = document.getElementById("clinicSelection");
 		var index = e.selectedIndex;
 
-			//dynammically detects change in
+			//dynamically detects change in
 			$('#clinicSelection').change(function(){
 				names = [];
 				console.log(names);
 				selected = $(this).find(':selected').text();
 				id = ($(this).find(':selected').val());
-				console.log(ids[id]);
+				// console.log(ids[id]);
 			   //query on change
 			   var query = new Firebase("https://medxport.firebaseio.com/Clinics/" + ids[id] + "/doctorIds/"); 
 			   query.on("value", function(snapshot) {
-			   	console.log(snapshot.val());
+			   	// console.log(snapshot.val());
 			   	for(var key in snapshot.val()) {
 				  	//gets the first names of doctors
 				  	namesId.push(key);
@@ -91,7 +91,7 @@ app.controller("homeCtrl", ["$scope", "Auth",
 				  var mySelect = $('#doctorSelection');
 				  mySelect.empty();
 				  $.each(names, function(val, text) {
-				  	mySelect.html(
+				  	mySelect.append(
 				  		$('<option></option>').val(val).html(text)
 				  		);
 				  });
