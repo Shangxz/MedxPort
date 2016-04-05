@@ -12,7 +12,7 @@
             <span class="input-group-addon" id="basic-addon1">#</span>
             <input id="textInput" type="text" class="form-control" placeholder="Input something" aria-describedby="basic-addon1">
             <span class="input-group-btn">
-                <button id="textInputSubmit" onclick="tryAPI()" class="btn btn-default" type="button">Fk <API></API>!</button>
+                <button id="textInputSubmit" onclick="tryAPI()" class="btn btn-default" type="button">Fk!</button>
             </span>
         </div>
         <div id="returnData"></div>
@@ -22,16 +22,13 @@
         function tryAPI() {
             var text = $("#textInput").val();
             if (text && text != "") {
-                var syncData = {
-                    text : text
-                }
                 $("#textInput").prop('disabled', true);
                 $("#textInputSubmit").prop('disabled', true);
                 $.ajax({
                     url: 'http://localhost:8080/api/parseText',
                     type: 'post',
                     data: {
-                        syncData
+                        text : text
                     },
                     dataType: 'json',
                     success: function (data) {

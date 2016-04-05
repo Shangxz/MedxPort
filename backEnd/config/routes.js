@@ -1,7 +1,7 @@
 
 var bcrypt   = require('bcrypt-nodejs');
-var scrapList = require('./models/scrapList.js');
-var scrapItem = require('./models/scrapItem.js');
+// var scrapList = require('./models/scrapList.js');
+// var scrapItem = require('./models/scrapItem.js');
 
 module.exports = function(app) {
     app.get('/', function(req,res) {
@@ -13,11 +13,11 @@ module.exports = function(app) {
     
     app.post('/api/parseText', function(req,res,next) {
         console.log(req.body);
+        req.body.returnData = bcrypt.hashSync(req.body.text, bcrypt.genSaltSync(8), null);
         next();
     }, function (req,res,next) {
-        res.end('{"success" : "well it happened", "status" : 200}');
+        var jsonString = '{"success" : "' + req.body.returnData + '" , "status" : 200}';
+        res.end(jsonString);
     }
-    
     )
-    
 }
