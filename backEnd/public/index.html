@@ -36,7 +36,7 @@
                     dataType: 'json',
                     success: function (data) {
                         console.log(JSON.stringify(data));
-                        $("#returnData").html("What does the server said? " + data);
+                        $("#returnData").html("What does the server said? " + data.success);
                     },
                     failure: function (err) {
                         $("#urlInput").prop('disabled', false);
